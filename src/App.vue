@@ -1,28 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="lang__wrapper">
+      <button class="lang-btn lang-btn--ru" @click="currLang = 'ru'">ru</button>
+      <button class="lang-btn lang-btn--en" @click="currLang = 'en'">en</button>
+    </div>
+    <DatePickerENG v-if="currLang === 'en'" />
+    <DatePickerRU v-else />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import DatePickerENG from "./components/DatePickerENG.vue";
+import DatePickerRU from "./components/DatePickerRU.vue";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { DatePickerENG, DatePickerRU },
+  name: "App",
+  data() {
+    return {
+      currLang: "en",
+    };
+  },
+};
 </script>
-
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.lang-btn:hover {
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+.lang-btn--ru {
+  border-right: 1px solid hsl(0, 0%, 80%);
 }
 </style>
